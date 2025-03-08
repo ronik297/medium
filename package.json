@@ -2,7 +2,8 @@
   "name": "medium",
   "scripts": {
     "dev": "wrangler dev",
-    "deploy": "wrangler deploy --minify"
+    "deploy": "wrangler deploy --minify",
+    "prisma:generate": "prisma generate --no-engine"
   },
   "dependencies": {
     "@prisma/client": "^6.4.1",
