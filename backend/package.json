@@ -6,6 +6,7 @@
     "prisma:generate": "prisma generate --no-engine"
   },
   "dependencies": {
+    "@__rkg__/medium-common": "^1.5.0",
     "@prisma/client": "^6.4.1",
     "@prisma/extension-accelerate": "^1.2.2",
     "hono": "^4.7.4",
