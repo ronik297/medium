@@ -21,8 +21,6 @@ export default function Blog() {
     );
   }
 
-  if (!blog) return <div>Blog not found</div>;
-
   return (
     <div>
       <FullBlog blog={blog} />
