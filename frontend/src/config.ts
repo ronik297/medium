@@ -1,1 +1,1 @@
-export const BACKEND_URL = "medium.ronik-projects.workers.dev";
+export const BACKEND_URL = "https://medium.ronik-projects.workers.dev";

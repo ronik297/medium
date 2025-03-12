@@ -1,31 +1,42 @@
-import React from "react";
 import BlogCard from "../components/BlogCard";
 import { Appbar } from "../components/Appbar";
+import { useBlogs } from "../hooks/useBlogs";
+import BlogSkeleton from "../components/BlogSkeleton";
 
 export default function Blogs() {
+  const { loading, blogs } = useBlogs();
+
+  if (loading) {
+    return (
+      <div>
+        <Appbar />
+        <div className="flex justify-center items-center overflow-hidden">
+          <div>
+            <BlogSkeleton />
+            <BlogSkeleton />
+            <BlogSkeleton />
+            <BlogSkeleton />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
       <Appbar />
       <div className="flex justify-center">
-        <div className="max-w-xl">
-          <BlogCard
-            authorName="Ronik Kumar"
-            title="How an Ugly Single-Page Website Makes $5,0000 a Month with Affiliate Marketing"
-            content="lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
-            publishedDate="12 March 2025"
-          />
-          <BlogCard
-            authorName="Ronik Kumar"
-            title="How an Ugly Single-Page Website Makes $5,0000 a Month with Affiliate Marketing"
-            content="lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
-            publishedDate="12 March 2025"
-          />
-          <BlogCard
-            authorName="Ronik Kumar"
-            title="How an Ugly Single-Page Website Makes $5,0000 a Month with Affiliate Marketing"
-            content="lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
-            publishedDate="12 March 2025"
-          />
+        <div className="w-full lg:w-1/2">
+          {blogs.map((blog) => (
+            <BlogCard
+              key={blog.id}
+              id={blog.id}
+              authorName={blog.author.name || "Anonymous"}
+              title={blog.title}
+              content={blog.content}
+              publishedDate="12 March 2025"
+            />
+          ))}
         </div>
       </div>
     </>
