@@ -1,7 +1,7 @@
 {
   "name": "medium",
   "scripts": {
-    "dev": "wrangler dev",
+    "dev": "wrangler dev --port=3000",
     "deploy": "wrangler deploy --minify",
     "prisma:generate": "prisma generate --no-engine"
   },
