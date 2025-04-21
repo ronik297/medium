@@ -5,7 +5,9 @@ export const Appbar = () => {
   return (
     <div className="border-b border-slate-300 flex justify-between items-center px-10 py-4">
       <Link to={"/blogs"}>
-        <div className="cursor-pointer">Medium</div>
+        <div className="cursor-pointer">
+          <img src="/medium_logo.svg" className="w-[112px] h-[40px]" />
+        </div>
       </Link>
       <div>
         <Link to={"/publish"}>
