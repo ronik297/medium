@@ -1,5 +1,5 @@
+import { LogOut } from "lucide-react";
 import { Link } from "react-router-dom";
-import { FiLogOut } from "react-icons/fi";
 
 export const UserMenu = () => {
   const handleLogout = () => {
@@ -10,22 +10,22 @@ export const UserMenu = () => {
     <ul className="space-y-2">
       {/* <Link
         to="/profile"
-        className="flex items-center gap-2 px-4 cursor-pointer hover:bg-gray-100 py-2 rounded hover:scale-125 duration-200"
+        className="flex items-center gap-2 px-4 cursor-pointer hover:bg-gray-100 py-2 rounded hover:scale-115 duration-200"
       >
-        <CgProfile /> Profile
+        <User /> Profile
       </Link>
       <Link
         to="/settings"
-        className="flex items-center gap-2 px-4 cursor-pointer hover:bg-gray-100 py-2 rounded hover:scale-125 duration-200"
+        className="flex items-center gap-2 px-4 cursor-pointer hover:bg-gray-100 py-2 rounded hover:scale-115 duration-200"
       >
-        <FiSettings /> Settings
+        <Settings /> Settings
       </Link> */}
       <Link
         to="/signin"
-        className="flex items-center gap-2 px-4 cursor-pointer hover:bg-gray-100 py-2 rounded hover:scale-125 duration-200"
+        className="flex items-center gap-2 px-4 cursor-pointer hover:bg-gray-100 py-2 rounded hover:scale-115 duration-200"
         onClick={handleLogout}
       >
-        <FiLogOut /> Logout
+        <LogOut /> Logout
       </Link>
     </ul>
   );

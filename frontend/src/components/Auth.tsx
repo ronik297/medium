@@ -38,7 +38,7 @@ export default function Auth({ type }: { type: "signup" | "signin" }) {
               ? "Don't have an account?"
               : "Already have an account?"}
             <Link
-              className="pl-2 underline"
+              className="pl-2 hover:underline"
               to={type === "signin" ? "/signup" : "/signin"}
             >
               {type === "signin" ? "Sign up" : "Sign in"}
@@ -82,7 +82,8 @@ export default function Auth({ type }: { type: "signup" | "signin" }) {
           <button
             type="button"
             onClick={sendRequest}
-            className="w-full mt-2 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+            className="w-full mt-2 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 cursor-pointer
+            "
           >
             {type === "signin" ? "Sign In" : "Sign Up"}
           </button>
