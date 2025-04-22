@@ -56,6 +56,7 @@ userRouter.post("/signup", async (c) => {
 userRouter.post("/signin", async (c) => {
   const body = await c.req.json();
   const { success } = signinInput.safeParse(body);
+
   if (!success) {
     c.status(411);
     return c.json({
@@ -66,6 +67,7 @@ userRouter.post("/signin", async (c) => {
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());
+
   try {
     const user = await prisma.user.findFirst({
       where: {
@@ -96,7 +98,6 @@ userRouter.post("/signin", async (c) => {
 
 userRouter.post("/logout", async (c) => {
   const authHeader = c.req.header("authorization");
-  console.log("authHeader", authHeader);
   try {
     const user = await verify(authHeader || "", c.env.JWT_SECRET);
     if (!user) {
@@ -107,6 +108,37 @@ userRouter.post("/logout", async (c) => {
     return c.text("Logged out successfully");
   } catch (error) {
     c.status(403);
-    return c.text("You are not logged in");
+    return c.text("Error logging out: " + error);
+  }
+});
+
+userRouter.get("/me", async (c) => {
+  const authHeader = c.req.header("authorization");
+  const isAuthenticated = await verify(authHeader || "", c.env.JWT_SECRET);
+
+  if (!isAuthenticated) {
+    c.status(403);
+    return c.text("Invalid credentials");
+  }
+
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL,
+  }).$extends(withAccelerate());
+
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        id: Number(isAuthenticated.id),
+      },
+      select: {
+        username: true,
+        name: true,
+      },
+    });
+
+    return c.json(user);
+  } catch (error) {
+    c.status(403);
+    return c.text("Error fetching user data:" + error);
   }
 });
