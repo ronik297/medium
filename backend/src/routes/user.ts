@@ -93,3 +93,20 @@ userRouter.post("/signin", async (c) => {
     return c.text("Invalid credentials");
   }
 });
+
+userRouter.post("/logout", async (c) => {
+  const authHeader = c.req.header("authorization");
+  console.log("authHeader", authHeader);
+  try {
+    const user = await verify(authHeader || "", c.env.JWT_SECRET);
+    if (!user) {
+      c.status(403);
+      return c.text("Invalid credentials");
+    }
+    c.status(200);
+    return c.text("Logged out successfully");
+  } catch (error) {
+    c.status(403);
+    return c.text("You are not logged in");
+  }
+});
