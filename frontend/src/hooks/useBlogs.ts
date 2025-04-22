@@ -32,6 +32,7 @@ export const useBlog = ({ id }: { id: string }) => {
 export const useBlogs = () => {
   const [loading, setLoading] = useState(true);
   const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     axios
@@ -41,8 +42,13 @@ export const useBlogs = () => {
       .then((res) => {
         setBlogs(res.data.blogs);
         setLoading(false);
+      })
+      .catch((err) => {
+        setError("Something went wrong!" + err + "Please try again later.");
+        setLoading(false);
+        console.error(err);
       });
   }, []);
 
-  return { loading, blogs };
+  return { loading, blogs, error };
 };

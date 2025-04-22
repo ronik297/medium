@@ -2,9 +2,10 @@ import BlogCard from "../components/BlogCard";
 import { Appbar } from "../components/Appbar";
 import { useBlogs } from "../hooks/useBlogs";
 import BlogSkeleton from "../components/BlogSkeleton";
+import { useNavigate } from "react-router-dom";
 
 export default function Blogs() {
-  const { loading, blogs } = useBlogs();
+  const { loading, blogs, error } = useBlogs();
 
   if (loading) {
     return (
@@ -25,7 +26,7 @@ export default function Blogs() {
   return (
     <>
       <Appbar />
-      <div className="flex justify-center">
+      <div className="flex justify-center pb-10">
         <div className="w-full lg:w-1/2">
           {blogs.map((blog) => (
             <BlogCard

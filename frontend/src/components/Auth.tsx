@@ -23,7 +23,7 @@ export default function Auth({ type }: { type: "signup" | "signin" }) {
       localStorage.setItem("token", jwt);
       navigate("/blogs");
     } catch (error) {
-      alert("Something went wrong");
+      alert("Something went wrong! Please try again later.");
       console.error(error);
     }
   }
