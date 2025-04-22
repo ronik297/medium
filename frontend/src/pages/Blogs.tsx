@@ -2,10 +2,9 @@ import BlogCard from "../components/BlogCard";
 import { Appbar } from "../components/Appbar";
 import { useBlogs } from "../hooks/useBlogs";
 import BlogSkeleton from "../components/BlogSkeleton";
-import { useNavigate } from "react-router-dom";
 
 export default function Blogs() {
-  const { loading, blogs, error } = useBlogs();
+  const { loading, blogs } = useBlogs();
 
   if (loading) {
     return (

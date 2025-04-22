@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-import { FiLogOut, FiSettings } from "react-icons/fi";
-import { CgProfile } from "react-icons/cg";
+import { FiLogOut } from "react-icons/fi";
 
 export const UserMenu = () => {
   const handleLogout = () => {
