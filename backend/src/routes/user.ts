@@ -3,6 +3,7 @@ import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
 import { decode, sign, verify } from "hono/jwt";
 import { signinInput, signupInput } from "@__rkg__/medium-common";
+import { use } from "hono/jsx";
 
 export const userRouter = new Hono<{
   Bindings: {
@@ -193,5 +194,32 @@ userRouter.put("/setting", async (c) => {
     return c.json({ user, message: "User data updated successfully" });
   } catch (error) {
     c.text("Error updating user data:" + error);
+  }
+});
+
+userRouter.delete("/delete", async (c) => {
+  const authHeader = c.req.header("authorization");
+  const isAuthenticated = await verify(authHeader || "", c.env.JWT_SECRET);
+
+  if (!isAuthenticated) {
+    c.status(403);
+    return c.text("Invalid credentials");
+  }
+
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL,
+  }).$extends(withAccelerate());
+
+  try {
+    await prisma.user.delete({
+      where: {
+        id: Number(isAuthenticated.id),
+      },
+    });
+
+    return c.json({ message: "User deleted successfully" });
+  } catch (error) {
+    c.status(403);
+    return c.text("Error deleting user:" + error);
   }
 });
