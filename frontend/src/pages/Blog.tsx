@@ -8,15 +8,7 @@ export default function Blog() {
   const { loading, blog } = useBlog({ id: id || "" });
 
   if (loading || !blog) {
-    return (
-      <div>
-        <div className="h-screen flex flex-col justify-center">
-          <div className="flex justify-center">
-            <Spinner />
-          </div>
-        </div>
-      </div>
-    );
+    return <Spinner />;
   }
 
   return (

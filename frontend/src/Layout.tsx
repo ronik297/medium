@@ -5,7 +5,7 @@ function Layout() {
   return (
     <>
       <Appbar />
-      <div>
+      <div className="flex flex-col items-center">
         <Outlet />
       </div>
     </>
