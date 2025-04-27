@@ -1,5 +1,4 @@
 import { ChangeEvent, useState } from "react";
-import { Appbar } from "../components/Appbar";
 import { BACKEND_URL } from "../config";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -11,7 +10,6 @@ export default function Publish() {
 
   return (
     <div>
-      <Appbar />
       <div className="flex justify-center w-full pt-8">
         <div className="p-4 max-w-screen-lg w-full lg:p-0">
           <input

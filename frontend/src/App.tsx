@@ -4,6 +4,8 @@ import Signin from "./pages/Signin";
 import Blog from "./pages/Blog";
 import Blogs from "./pages/Blogs";
 import Publish from "./pages/Publish";
+import Layout from "./Layout";
+import Settings from "./pages/Settings";
 
 function App() {
   return (
@@ -13,9 +15,12 @@ function App() {
           <Route path="/" element={<Signin />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/blogs" element={<Blogs />} />
-          <Route path="/blog/:id" element={<Blog />} />
-          <Route path="/publish" element={<Publish />} />
+          <Route element={<Layout />}>
+            <Route path="/blogs" element={<Blogs />} />
+            <Route path="/blog/:id" element={<Blog />} />
+            <Route path="/publish" element={<Publish />} />
+            <Route path="/settings" element={<Settings />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </>

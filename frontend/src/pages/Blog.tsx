@@ -1,4 +1,3 @@
-import { Appbar } from "../components/Appbar";
 import { FullBlog } from "../components/FullBlog";
 import { Spinner } from "../components/Spinner";
 import { useBlog } from "../hooks/useBlogs";
@@ -11,7 +10,6 @@ export default function Blog() {
   if (loading || !blog) {
     return (
       <div>
-        <Appbar />
         <div className="h-screen flex flex-col justify-center">
           <div className="flex justify-center">
             <Spinner />

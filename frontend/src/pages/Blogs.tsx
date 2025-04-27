@@ -1,5 +1,4 @@
 import BlogCard from "../components/BlogCard";
-import { Appbar } from "../components/Appbar";
 import { useBlogs } from "../hooks/useBlogs";
 import BlogSkeleton from "../components/BlogSkeleton";
 
@@ -8,15 +7,12 @@ export default function Blogs() {
 
   if (loading) {
     return (
-      <div>
-        <Appbar />
-        <div className="flex justify-center items-center overflow-hidden">
-          <div>
-            <BlogSkeleton />
-            <BlogSkeleton />
-            <BlogSkeleton />
-            <BlogSkeleton />
-          </div>
+      <div className="flex justify-center items-center overflow-hidden">
+        <div>
+          <BlogSkeleton />
+          <BlogSkeleton />
+          <BlogSkeleton />
+          <BlogSkeleton />
         </div>
       </div>
     );
@@ -24,7 +20,6 @@ export default function Blogs() {
 
   return (
     <>
-      <Appbar />
       <div className="flex justify-center pb-10">
         <div className="w-full lg:w-1/2">
           {blogs.map((blog) => (
