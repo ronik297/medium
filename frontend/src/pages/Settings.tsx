@@ -5,7 +5,7 @@ import { Spinner } from "../components/Spinner";
 import { Save } from "lucide-react";
 
 export default function Settings() {
-  const { user, error, loading } = useUser();
+  const { user, loading } = useUser();
 
   const [userSettings, setUserSettings] = useState({
     username: "",
