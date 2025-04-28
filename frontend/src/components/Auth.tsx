@@ -99,6 +99,7 @@ interface LabelledInputProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   type?: string;
   value?: string;
+  disabled?: boolean;
 }
 
 export function LabelledInput({
@@ -107,6 +108,7 @@ export function LabelledInput({
   onChange,
   type,
   value,
+  disabled,
 }: LabelledInputProps) {
   return (
     <div className="w-full flex flex-col gap-1">
@@ -115,6 +117,7 @@ export function LabelledInput({
         onChange={onChange}
         type={type || "text"}
         value={value}
+        disabled={disabled}
         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         placeholder={placeholder}
         required

@@ -8,7 +8,11 @@ export default function Blog() {
   const { loading, blog } = useBlog({ id: id || "" });
 
   if (loading || !blog) {
-    return <Spinner />;
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Spinner />;
+      </div>
+    );
   }
 
   return (

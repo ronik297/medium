@@ -1,11 +1,18 @@
 import { useEffect, useState } from "react";
 import { LabelledInput } from "../components/Auth";
-import { useUser } from "../hooks/useUser";
+import { useUpdateUser, useUser } from "../hooks/useUser";
 import { Spinner } from "../components/Spinner";
 import { Save } from "lucide-react";
 
 export default function Settings() {
-  const { user, loading } = useUser();
+  const { user, loading, error } = useUser();
+  const {
+    user: updatedUser,
+    updateUser,
+    error: updatedUserError,
+    loading: updatedUserLoading,
+    success,
+  } = useUpdateUser();
 
   const [userSettings, setUserSettings] = useState({
     username: "",
@@ -14,17 +21,27 @@ export default function Settings() {
   });
 
   useEffect(() => {
-    if (user) {
+    if (updatedUser) {
       setUserSettings({
-        username: user.username,
-        name: user.name,
+        username: updatedUser.username,
+        name: updatedUser.name,
+        password: "",
+      });
+    } else {
+      setUserSettings({
+        username: user?.username || "",
+        name: user?.name || "",
         password: "",
       });
     }
-  }, [user]);
+  }, [user, updatedUser]);
 
   if (loading) {
-    return <Spinner />;
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Spinner color="#fff" bgColor="#2147ec" />
+      </div>
+    );
   }
 
   return (
@@ -36,6 +53,7 @@ export default function Settings() {
           label="Name"
           value={userSettings.name}
           placeholder="Enter your name"
+          disabled={updatedUserLoading}
           onChange={(e) =>
             setUserSettings((prev) => ({ ...prev, name: e.target.value }))
           }
@@ -44,6 +62,7 @@ export default function Settings() {
           label="Username"
           value={userSettings.username}
           placeholder="Enter your username"
+          disabled={updatedUserLoading}
           onChange={(e) =>
             setUserSettings((prev) => ({
               ...prev,
@@ -54,6 +73,7 @@ export default function Settings() {
         <LabelledInput
           label="Password"
           placeholder="Enter your password"
+          disabled={updatedUserLoading}
           value={userSettings.password}
           type="password"
           onChange={(e) =>
@@ -65,13 +85,33 @@ export default function Settings() {
         />
       </div>
       <div>
-        <button>
+        <button
+          onClick={() => updateUser(userSettings)}
+          disabled={updatedUserLoading}
+        >
           <div className="bg-blue-600 hover:bg-blue-900 flex gap-2 text-white font-bold py-2 px-4 rounded cursor-pointer">
-            <Save />
+            {updatedUserLoading ? (
+              <Spinner color="#2098e2" bgColor="#7a7785" />
+            ) : (
+              <Save />
+            )}
             Save Changes
           </div>
         </button>
       </div>
+      {success && (
+        <p className="text-green-500 text-sm text-center mt-2">
+          User settings updated successfully!
+        </p>
+      )}
+      {updatedUserError && (
+        <p className="text-red-500 text-sm text-center mt-2">
+          {updatedUserError}
+        </p>
+      )}
+      {error && (
+        <p className="text-red-500 text-sm text-center mt-2">{error}</p>
+      )}
     </div>
   );
 }
