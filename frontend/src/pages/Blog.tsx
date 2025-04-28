@@ -10,7 +10,7 @@ export default function Blog() {
   if (loading || !blog) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <Spinner />;
+        <Spinner />
       </div>
     );
   }

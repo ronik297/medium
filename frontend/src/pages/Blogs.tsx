@@ -29,7 +29,14 @@ export default function Blogs() {
               authorName={blog.author.name || "Anonymous"}
               title={blog.title}
               content={blog.content}
-              publishedDate="12 March 2025"
+              publishedDate={new Date(blog.createdAt).toLocaleDateString(
+                "en-GB",
+                {
+                  day: "numeric",
+                  month: "short",
+                  year: "numeric",
+                }
+              )}
             />
           ))}
         </div>
