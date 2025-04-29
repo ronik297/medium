@@ -3,6 +3,7 @@ import { Avatar } from "./BlogCard";
 import { useState } from "react";
 import useOutsideClick from "../hooks/useOutsideClick";
 import { UserMenu } from "./UserMenu";
+import { PenLine } from "lucide-react";
 
 export const Appbar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -23,9 +24,9 @@ export const Appbar = () => {
         <Link to={"/publish"}>
           <button
             type="button"
-            className="mr-4 focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 cursor-pointer"
+            className="mr-4 focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 cursor-pointer flex items-center gap-2"
           >
-            Publish
+            <PenLine size={20} /> Publish
           </button>
         </Link>
         <div onClick={() => setShowMenu((prev) => !prev)} className="relative">

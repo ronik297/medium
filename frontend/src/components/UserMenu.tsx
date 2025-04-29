@@ -38,14 +38,14 @@ export const UserMenu = () => {
         to="/settings"
         className="flex items-center gap-2 px-4 cursor-pointer hover:bg-gray-100 py-2 rounded hover:scale-110 duration-200"
       >
-        <Settings /> Settings
+        <Settings size={20} /> Settings
       </Link>
       <Link
         to="/signin"
         className="flex items-center gap-2 px-4 cursor-pointer hover:bg-gray-100 py-2 rounded hover:scale-110 duration-200"
         onClick={handleLogout}
       >
-        <LogOut /> Sign out
+        <LogOut size={20} /> Sign out
       </Link>
     </ul>
   );

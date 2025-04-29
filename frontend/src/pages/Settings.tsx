@@ -89,7 +89,7 @@ export default function Settings() {
           onClick={() => updateUser(userSettings)}
           disabled={updatedUserLoading}
         >
-          <div className="bg-blue-600 hover:bg-blue-900 flex gap-2 text-white font-bold py-2 px-4 rounded cursor-pointer">
+          <div className="bg-blue-700 hover:bg-blue-900 flex gap-2 text-white font-bold py-2 px-4 rounded cursor-pointer">
             {updatedUserLoading ? (
               <Spinner color="#2098e2" bgColor="#7a7785" />
             ) : (

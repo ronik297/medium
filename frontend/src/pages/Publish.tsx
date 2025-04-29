@@ -2,6 +2,7 @@ import { ChangeEvent, useState } from "react";
 import { BACKEND_URL } from "../config";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Send } from "lucide-react";
 
 export default function Publish() {
   const [title, setTitle] = useState("");
@@ -20,7 +21,7 @@ export default function Publish() {
         <TextEditor onChange={(e) => setDescription(e.target.value)} />
         <button
           type="submit"
-          className="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
+          className="inline-flex items-center gap-2 cursor-pointer px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800 "
           onClick={async () => {
             const response = await axios.post(
               `${BACKEND_URL}/api/v1/blog`,
@@ -37,7 +38,7 @@ export default function Publish() {
             navigate(`/blog/${response.data.id}`);
           }}
         >
-          Publish post
+          <Send size={16} /> Publish post
         </button>
       </div>
     </div>
