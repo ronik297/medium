@@ -4,9 +4,11 @@ import { useState } from "react";
 import useOutsideClick from "../hooks/useOutsideClick";
 import { UserMenu } from "./UserMenu";
 import { PenLine } from "lucide-react";
+import { useUser } from "../hooks/useUser";
 
 export const Appbar = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const { user } = useUser();
   const ref = useOutsideClick({
     handler: () => {
       setShowMenu(false);
@@ -29,13 +31,16 @@ export const Appbar = () => {
             <PenLine size={18} /> Publish
           </button>
         </Link>
-        <div onClick={() => setShowMenu((prev) => !prev)} className="relative">
-          <Avatar size="big" name="Ronik Kumar" />
+        <div
+          onClick={() => {
+            setShowMenu((prev) => !prev);
+          }}
+          className="relative"
+          ref={ref}
+        >
+          <Avatar size="big" name={user?.name || ""} />
           {showMenu && (
-            <div
-              className="absolute right-0 top-16 bg-white shadow-lg rounded-lg w-48 p-4 z-999 "
-              ref={ref}
-            >
+            <div className="absolute right-0 top-16 bg-white shadow-lg rounded-lg w-48 p-4 z-999 ">
               <UserMenu />
             </div>
           )}
