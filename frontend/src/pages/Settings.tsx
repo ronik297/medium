@@ -38,7 +38,7 @@ export default function Settings() {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-screen">
+      <div className="flex justify-center items-center w-full h-[calc(100vh-73px)]">
         <Spinner color="#fff" bgColor="#2147ec" />
       </div>
     );
