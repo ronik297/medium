@@ -26,7 +26,7 @@ export const Appbar = () => {
             type="button"
             className="mr-4 focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 cursor-pointer flex items-center gap-2"
           >
-            <PenLine size={20} /> Publish
+            <PenLine size={18} /> Publish
           </button>
         </Link>
         <div onClick={() => setShowMenu((prev) => !prev)} className="relative">

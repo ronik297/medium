@@ -46,7 +46,8 @@ blogRouter.post("/", async (c) => {
   return c.json({ id: blog.id });
 });
 
-blogRouter.put("/", async (c) => {
+blogRouter.put("/:id", async (c) => {
+  const id = c.req.param("id");
   const body = await c.req.json();
 
   const prisma = new PrismaClient({
@@ -55,7 +56,7 @@ blogRouter.put("/", async (c) => {
 
   const blog = await prisma.blog.update({
     where: {
-      id: body.id,
+      id: Number(id),
     },
     data: {
       title: body.title,
@@ -66,7 +67,22 @@ blogRouter.put("/", async (c) => {
   return c.json({ id: blog.id });
 });
 
-// Todo: pagination
+blogRouter.delete("/:id", async (c) => {
+  const id = c.req.param("id");
+
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL,
+  }).$extends(withAccelerate());
+
+  await prisma.blog.delete({
+    where: {
+      id: Number(id),
+    },
+  });
+
+  return c.json({ message: "Blog post deleted" });
+});
+
 blogRouter.get("/bulk", async (c) => {
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
@@ -81,6 +97,7 @@ blogRouter.get("/bulk", async (c) => {
       author: {
         select: {
           name: true,
+          id: true,
         },
       },
     },
@@ -109,10 +126,12 @@ blogRouter.get("/:id", async (c) => {
         author: {
           select: {
             name: true,
+            id: true,
           },
         },
       },
     });
+
     return c.json({ blog });
   } catch (error) {
     c.status(404);

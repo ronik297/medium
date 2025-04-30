@@ -16,7 +16,7 @@ export default function Blog() {
   }
 
   return (
-    <div>
+    <div className="min-w-[50vw]">
       <FullBlog blog={blog} />
     </div>
   );

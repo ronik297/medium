@@ -45,9 +45,11 @@ export default function Settings() {
   }
 
   return (
-    <div className="flex flex-col items-center gap-4 mt-20 mx-auto p-8 rounded-lg shadow-2xl text-white w-full max-w-4xl">
+    <div className="flex flex-col items-center gap-4 mt-10 mx-auto p-8 rounded-lg shadow-2xl text-white w-full max-w-4xl">
       <h1 className="text-3xl font-bold text-black">Settings</h1>
-      <p className="text-slate-400">Manage your account settings here.</p>
+      <p className="text-slate-400 text-center">
+        Manage your account settings here.
+      </p>
       <div className="flex flex-col items-center gap-4 w-full mt-4">
         <LabelledInput
           label="Name"
@@ -93,7 +95,7 @@ export default function Settings() {
             {updatedUserLoading ? (
               <Spinner color="#2098e2" bgColor="#7a7785" />
             ) : (
-              <Save />
+              <Save size={16} />
             )}
             Save Changes
           </div>
