@@ -92,7 +92,7 @@ export default function Settings() {
           disabled={updatedUserLoading}
         >
           <div className="flex items-center bg-blue-700 hover:bg-blue-900 gap-2 text-white font-bold py-2 px-4 rounded cursor-pointer">
-            {updatedUserLoading ? <Spinner /> : <Save size={18} />}
+            {updatedUserLoading ? <Spinner size={16} /> : <Save size={18} />}
             Save Changes
           </div>
         </button>
@@ -104,11 +104,13 @@ export default function Settings() {
       )}
       {updatedUserError && (
         <p className="text-red-500 text-sm text-center mt-2">
-          {updatedUserError}
+          {updatedUserError?.message}
         </p>
       )}
       {error && (
-        <p className="text-red-500 text-sm text-center mt-2">{error}</p>
+        <p className="text-red-500 text-sm text-center mt-2">
+          {error?.message}
+        </p>
       )}
     </div>
   );
