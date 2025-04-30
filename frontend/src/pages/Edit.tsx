@@ -45,8 +45,12 @@ function Edit() {
 
   const handleUpdateBlog = async () => {
     try {
-      const response = await updateBlog(id || "", title, description);
-      navigate(`/blog/${response?.id}`);
+      const updatedBlogId = await updateBlog({
+        id: id || "",
+        title,
+        content: description,
+      });
+      navigate(`/blog/${updatedBlogId}`);
     } catch (error) {
       console.error("Error updating blog:", error);
     }
@@ -86,7 +90,8 @@ function Edit() {
           onClick={handleUpdateBlog}
           disabled={updateBlogLoading}
         >
-          {updateBlogLoading ? <Spinner /> : <RefreshCcw size={16} />} Update
+          {updateBlogLoading ? <Spinner size={16} /> : <RefreshCcw size={16} />}{" "}
+          Update
         </button>
         <button
           className="w-full flex justify-center items-center gap-2 cursor-pointer px-5 py-2.5 text-sm font-medium text-center text-white bg-red-700 rounded-lg focus:ring-4 focus:ring-red-200 dark:focus:ring-red-900 hover:bg-red-800"
@@ -94,7 +99,7 @@ function Edit() {
           disabled={deleteBlogLoading}
         >
           {deleteBlogLoading ? (
-            <Spinner bgColor="#7a7785" />
+            <Spinner bgColor="#7a7785" size={16} />
           ) : (
             <Trash2 size={16} />
           )}{" "}
@@ -103,7 +108,7 @@ function Edit() {
       </div>
       {(deleteBlogError || updateBlogError) && (
         <p className="text-red-500 text-sm text-center mt-2">
-          {deleteBlogError || updateBlogError}
+          {deleteBlogError?.message || updateBlogError?.message}
         </p>
       )}
     </div>

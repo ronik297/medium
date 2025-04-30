@@ -13,8 +13,8 @@ export default function Publish() {
 
   const handleCreateBlog = async () => {
     try {
-      const response = await createBlog(title, description);
-      navigate(`/blog/${response?.id}`);
+      const createdBlogId = await createBlog({ title, content: description });
+      navigate(`/blog/${createdBlogId}`);
     } catch (error) {
       console.error("Error creating blog:", error);
     }
@@ -41,12 +41,18 @@ export default function Publish() {
             onClick={handleCreateBlog}
             disabled={loading}
           >
-            {loading ? <Spinner bgColor="#dcdbea" /> : <Send size={16} />}{" "}
+            {loading ? (
+              <Spinner bgColor="#dcdbea" size={16} />
+            ) : (
+              <Send size={16} />
+            )}{" "}
             Publish post
           </button>
         </div>
         {error && (
-          <p className="text-red-500 text-sm text-center mt-2">{error}</p>
+          <p className="text-red-500 text-sm text-center mt-2">
+            {error.message}
+          </p>
         )}
       </div>
     </div>
