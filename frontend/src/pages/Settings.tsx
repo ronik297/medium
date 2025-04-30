@@ -39,7 +39,7 @@ export default function Settings() {
   if (loading) {
     return (
       <div className="flex justify-center items-center w-full h-[calc(100vh-73px)]">
-        <Spinner color="#fff" bgColor="#2147ec" />
+        <Spinner />
       </div>
     );
   }
@@ -91,12 +91,8 @@ export default function Settings() {
           onClick={() => updateUser(userSettings)}
           disabled={updatedUserLoading}
         >
-          <div className="bg-blue-700 hover:bg-blue-900 flex gap-2 text-white font-bold py-2 px-4 rounded cursor-pointer">
-            {updatedUserLoading ? (
-              <Spinner color="#2098e2" bgColor="#7a7785" />
-            ) : (
-              <Save size={16} />
-            )}
+          <div className="flex items-center bg-blue-700 hover:bg-blue-900 gap-2 text-white font-bold py-2 px-4 rounded cursor-pointer">
+            {updatedUserLoading ? <Spinner /> : <Save size={18} />}
             Save Changes
           </div>
         </button>

@@ -4,13 +4,22 @@ import BlogSkeleton from "../components/BlogSkeleton";
 import TextEditor from "../components/TextEditor";
 import { useEffect, useState } from "react";
 import { RefreshCcw, Trash2 } from "lucide-react";
+import { Spinner } from "../components/Spinner";
 
 function Edit() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { loading, blog } = useBlog({ id: id || "" });
-  const { updateBlog } = useUpdateBlog();
-  const { deleteBlog } = useDeleteBlog();
+  const {
+    updateBlog,
+    loading: updateBlogLoading,
+    error: updateBlogError,
+  } = useUpdateBlog();
+  const {
+    deleteBlog,
+    loading: deleteBlogLoading,
+    error: deleteBlogError,
+  } = useDeleteBlog();
   const [title, setTitle] = useState(blog?.title || "");
   const [description, setDescription] = useState(blog?.content || "");
 
@@ -75,18 +84,28 @@ function Edit() {
         <button
           className="w-full inline-flex justify-center items-center gap-2 cursor-pointer px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
           onClick={handleUpdateBlog}
+          disabled={updateBlogLoading}
         >
-          <RefreshCcw size={16} />
-          Update
+          {updateBlogLoading ? <Spinner /> : <RefreshCcw size={16} />} Update
         </button>
         <button
           className="w-full flex justify-center items-center gap-2 cursor-pointer px-5 py-2.5 text-sm font-medium text-center text-white bg-red-700 rounded-lg focus:ring-4 focus:ring-red-200 dark:focus:ring-red-900 hover:bg-red-800"
           onClick={handleDeleteBlog}
+          disabled={deleteBlogLoading}
         >
-          <Trash2 size={16} />
+          {deleteBlogLoading ? (
+            <Spinner bgColor="#7a7785" />
+          ) : (
+            <Trash2 size={16} />
+          )}{" "}
           Delete
         </button>
       </div>
+      {(deleteBlogError || updateBlogError) && (
+        <p className="text-red-500 text-sm text-center mt-2">
+          {deleteBlogError || updateBlogError}
+        </p>
+      )}
     </div>
   );
 }

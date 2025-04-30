@@ -3,12 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { Send } from "lucide-react";
 import TextEditor from "../components/TextEditor";
 import { useCreateBlog } from "../hooks/useBlogs";
+import { Spinner } from "../components/Spinner";
 
 export default function Publish() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const navigate = useNavigate();
-  const { createBlog } = useCreateBlog();
+  const { createBlog, error, loading } = useCreateBlog();
 
   const handleCreateBlog = async () => {
     try {
@@ -38,10 +39,15 @@ export default function Publish() {
             type="submit"
             className="w-full inline-flex justify-center items-center gap-2 cursor-pointer px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800 "
             onClick={handleCreateBlog}
+            disabled={loading}
           >
-            <Send size={16} /> Publish post
+            {loading ? <Spinner bgColor="#dcdbea" /> : <Send size={16} />}{" "}
+            Publish post
           </button>
         </div>
+        {error && (
+          <p className="text-red-500 text-sm text-center mt-2">{error}</p>
+        )}
       </div>
     </div>
   );
