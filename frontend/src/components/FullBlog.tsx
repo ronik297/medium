@@ -13,7 +13,7 @@ export const FullBlog = ({ blog }: { blog: Blog }) => {
   return (
     <>
       <div className="rounded-lg shadow-2xl mt-10 w-full max-w-4xl p-10 bg-white text-black min-h-[25vh]">
-        <div className="grid grid-cols-12 w-full max-w-screen-xl gap-10">
+        <div className="grid grid-col-2 sm:grid-cols-12 w-full max-w-screen-xl gap-10">
           <div className="col-span-8">
             <div className="text-5xl font-extrabold">{blog.title}</div>
             <div className="text-slate-500 pt-4">
@@ -44,7 +44,7 @@ export const FullBlog = ({ blog }: { blog: Blog }) => {
           <div className="flex justify-end pt-4">
             <Link
               to={`/edit/${blog.id}`}
-              className="inline-flex items-center gap-2 cursor-pointer px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
+              className="inline-flex items-center gap-2 cursor-pointer px-5 py-2.5 text-sm font-medium text-center text-white bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg  hover:from-blue-700 hover:to-blue-900 transition-colors "
             >
               <Pencil size={18} />
               Edit post

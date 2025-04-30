@@ -1,6 +1,7 @@
 import axios, { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { BACKEND_URL } from "../config";
+import { useNavigate } from "react-router-dom";
 
 interface User {
   name: string;
@@ -21,6 +22,48 @@ const getAuthHeader = () => {
     throw new Error("No authentication token found");
   }
   return { Authorization: token };
+};
+
+interface AuthInput {
+  name?: string;
+  username: string;
+  password: string;
+}
+
+export const useAuthActions = () => {
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<ApiError | null>(null);
+
+  const authRequest = async (type: "signup" | "signin", inputs: AuthInput) => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await axios.post(
+        `${BACKEND_URL}/api/v1/user/${type}`,
+        inputs
+      );
+      const jwt = response.data;
+      localStorage.setItem("token", jwt);
+      navigate("/blogs");
+    } catch (error) {
+      const axiosError = error as AxiosError<{ message?: string }>;
+      const errorObj = {
+        message: axiosError.response?.data?.message || "Authentication failed",
+        statusCode: axiosError.response?.status,
+      };
+      setError(errorObj);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return {
+    authRequest,
+    loading,
+    error,
+  };
 };
 
 export const useUser = () => {

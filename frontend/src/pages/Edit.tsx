@@ -32,8 +32,8 @@ function Edit() {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center overflow-hidden">
-        <div>
+      <div className="flex justify-center items-center">
+        <div className="w-[90%] sm:w-full overflow-hidden">
           <BlogSkeleton />
           <BlogSkeleton />
           <BlogSkeleton />
@@ -66,7 +66,7 @@ function Edit() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4 mt-10 mx-auto p-8 rounded-lg shadow-2xl text-white w-full max-w-4xl">
+    <div className="flex flex-col items-center gap-4 mt-10 mx-auto p-8 rounded-lg shadow-2xl text-white w-[90%] sm:w-full max-w-4xl">
       <h1 className="text-3xl font-bold text-black">Edit Blog</h1>
       <p className="text-slate-400 text-center">
         Update your title and content below
@@ -84,9 +84,9 @@ function Edit() {
           onChange={(e) => setDescription(e.target.value)}
         />
       </div>
-      <div className="flex gap-4 w-full justify-center">
+      <div className="flex flex-col sm:flex-row p-4 sm:p-0 gap-4 w-full justify-center">
         <button
-          className="w-full inline-flex justify-center items-center gap-2 cursor-pointer px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
+          className="w-full inline-flex justify-center items-center gap-2 cursor-pointer px-5 py-2.5 text-sm font-medium text-center text-white  bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg  hover:from-blue-700 hover:to-blue-900 transition-colors "
           onClick={handleUpdateBlog}
           disabled={updateBlogLoading}
         >
@@ -94,7 +94,7 @@ function Edit() {
           Update
         </button>
         <button
-          className="w-full flex justify-center items-center gap-2 cursor-pointer px-5 py-2.5 text-sm font-medium text-center text-white bg-red-700 rounded-lg focus:ring-4 focus:ring-red-200 dark:focus:ring-red-900 hover:bg-red-800"
+          className="w-full flex justify-center items-center gap-2 cursor-pointer px-5 py-2.5 text-sm font-medium text-center text-white  bg-gradient-to-br from-red-500 to-red-700 rounded-lg  hover:from-red-700 hover:to-red-900 transition-colors"
           onClick={handleDeleteBlog}
           disabled={deleteBlogLoading}
         >

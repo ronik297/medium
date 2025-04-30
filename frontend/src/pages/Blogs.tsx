@@ -7,8 +7,8 @@ export default function Blogs() {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center overflow-hidden">
-        <div>
+      <div className="flex justify-center items-center">
+        <div className="w-[90%] sm:w-full overflow-hidden">
           <BlogSkeleton />
           <BlogSkeleton />
           <BlogSkeleton />
@@ -20,8 +20,8 @@ export default function Blogs() {
 
   return (
     <>
-      <div className="flex justify-center pb-10">
-        <div className="w-full ">
+      <div className="flex justify-center p-10 ">
+        <div className="w-full flex flex-col gap-4">
           {blogs.map((blog) => (
             <BlogCard
               key={blog.id}

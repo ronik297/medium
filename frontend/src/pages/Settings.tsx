@@ -45,7 +45,7 @@ export default function Settings() {
   }
 
   return (
-    <div className="flex flex-col items-center gap-4 mt-10 mx-auto p-8 rounded-lg shadow-2xl text-white w-full max-w-4xl">
+    <div className="flex flex-col items-center gap-4 mt-10 mx-auto p-8 rounded-lg shadow-2xl text-white w-[90%] sm:w-full max-w-4xl">
       <h1 className="text-3xl font-bold text-black">Settings</h1>
       <p className="text-slate-400 text-center">
         Manage your account settings here.
@@ -91,7 +91,7 @@ export default function Settings() {
           onClick={() => updateUser(userSettings)}
           disabled={updatedUserLoading}
         >
-          <div className="flex items-center bg-blue-700 hover:bg-blue-900 gap-2 text-white font-bold py-2 px-4 rounded cursor-pointer">
+          <div className="flex items-center text-white py-2 px-4 font-medium cursor-pointer bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg  hover:from-blue-700 hover:to-blue-900 transition-colors gap-2">
             {updatedUserLoading ? <Spinner size={16} /> : <Save size={18} />}
             Save Changes
           </div>

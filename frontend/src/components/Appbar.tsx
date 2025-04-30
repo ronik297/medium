@@ -26,7 +26,7 @@ export const Appbar = () => {
         <Link to={"/publish"}>
           <button
             type="button"
-            className="mr-4 focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 cursor-pointer flex items-center gap-2"
+            className="mr-4 focus:outline-none text-white bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg  hover:from-blue-700 hover:to-blue-900 transition-colors font-medium text-sm px-5 py-2.5 cursor-pointer flex items-center gap-2"
           >
             <PenLine size={18} /> Publish
           </button>

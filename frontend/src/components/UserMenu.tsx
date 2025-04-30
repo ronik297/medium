@@ -30,22 +30,34 @@ export const UserMenu = () => {
     <ul className="space-y-2">
       {/* <Link
         to="/profile"
-        className="flex items-center gap-2 px-4 cursor-pointer hover:bg-gray-100 py-2 rounded hover:scale-110 duration-200"
+        className="flex items-center gap-2 px-4 py-2 rounded-md transition-all duration-200 hover:bg-gray-100 hover:text-blue-600 text-gray-700"
       >
-        <User /> Profile
+        <User size={20} className="text-gray-600" /> Profile
       </Link> */}
       <Link
         to="/settings"
-        className="flex items-center gap-2 px-4 cursor-pointer hover:bg-gray-100 py-2 rounded hover:scale-110 duration-200"
+        className="group flex items-center gap-2 px-4 py-2 rounded-md transition-all duration-100 hover:scale-105 hover:bg-gray-50 text-gray-800"
       >
-        <Settings size={20} /> Settings
+        <Settings
+          size={20}
+          className="group-hover:text-blue-600 transition-colors duration-100"
+        />{" "}
+        <span className="group-hover:text-blue-600 transition-colors duration-100">
+          Settings
+        </span>
       </Link>
       <Link
         to="/signin"
-        className="flex items-center gap-2 px-4 cursor-pointer hover:bg-gray-100 py-2 rounded hover:scale-110 duration-200"
+        className="group flex items-center gap-2 px-4 py-2 rounded-md transition-all duration-100 hover:scale-105 hover:bg-gray-50 text-gray-800"
         onClick={handleLogout}
       >
-        <LogOut size={20} /> Sign out
+        <LogOut
+          size={20}
+          className="text-gray-600 group-hover:text-blue-600 transition-colors duration-100"
+        />
+        <span className="group-hover:text-blue-600 transition-colors duration-100">
+          Sign out
+        </span>
       </Link>
     </ul>
   );
