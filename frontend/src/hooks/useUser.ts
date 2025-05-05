@@ -21,7 +21,7 @@ const getAuthHeader = () => {
   if (!token) {
     throw new Error("No authentication token found");
   }
-  return { Authorization: token };
+  return { Authorization: `Bearer ${token}` };
 };
 
 interface AuthInput {

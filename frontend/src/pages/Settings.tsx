@@ -13,7 +13,6 @@ export default function Settings() {
     loading: updatedUserLoading,
     success,
   } = useUpdateUser();
-
   const [userSettings, setUserSettings] = useState({
     username: "",
     name: "",
