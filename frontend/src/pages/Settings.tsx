@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { LabelledInput } from "../components/Auth";
-import { useUpdateUser, useUser } from "../hooks/useUser";
+import { useDeleteUser, useUpdateUser, useUser } from "../hooks/useUser";
 import { Spinner } from "../components/Spinner";
-import { Save } from "lucide-react";
+import { Save, Trash2 } from "lucide-react";
 
 export default function Settings() {
   const { user, loading, error } = useUser();
@@ -13,6 +13,12 @@ export default function Settings() {
     loading: updatedUserLoading,
     success,
   } = useUpdateUser();
+  const {
+    loading: deleteUserLoading,
+    error: deleteUserError,
+    deleteUser,
+  } = useDeleteUser();
+
   const [userSettings, setUserSettings] = useState({
     username: "",
     name: "",
@@ -85,15 +91,22 @@ export default function Settings() {
           }
         />
       </div>
-      <div>
+      <div className="flex flex-col sm:flex-row p-4 sm:p-0 gap-4 w-full justify-center">
         <button
           onClick={() => updateUser(userSettings)}
           disabled={updatedUserLoading}
+          className="w-full inline-flex justify-center items-center gap-2 cursor-pointer px-5 py-2.5 text-sm font-medium text-center text-white  bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg  hover:from-blue-700 hover:to-blue-900 transition-colors "
         >
-          <div className="flex items-center text-white py-2 px-4 font-medium cursor-pointer bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg  hover:from-blue-700 hover:to-blue-900 transition-colors gap-2">
-            {updatedUserLoading ? <Spinner size={16} /> : <Save size={18} />}
-            Save Changes
-          </div>
+          {updatedUserLoading ? <Spinner size={16} /> : <Save size={16} />}
+          Save Changes
+        </button>
+        <button
+          onClick={() => deleteUser()}
+          disabled={deleteUserLoading}
+          className="w-full flex justify-center items-center gap-2 cursor-pointer px-5 py-2.5 text-sm font-medium text-center text-white  bg-gradient-to-br from-red-500 to-red-700 rounded-lg  hover:from-red-700 hover:to-red-900 transition-colors"
+        >
+          {deleteUserLoading ? <Spinner size={16} /> : <Trash2 size={16} />}
+          Delete User
         </button>
       </div>
       {success && (
@@ -101,14 +114,9 @@ export default function Settings() {
           User settings updated successfully!
         </p>
       )}
-      {updatedUserError && (
+      {(updatedUserError || error || deleteUserError) && (
         <p className="text-red-500 text-sm text-center mt-2">
-          {updatedUserError?.message}
-        </p>
-      )}
-      {error && (
-        <p className="text-red-500 text-sm text-center mt-2">
-          {error?.message}
+          {updatedUserError?.message || error?.message}
         </p>
       )}
     </div>

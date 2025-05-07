@@ -15,6 +15,7 @@ export const userRouter = new Hono<{
 userRouter.post("/signup", async (c) => {
   const body = await c.req.json();
   const { success, data } = signupInput.safeParse(body);
+
   if (!success) {
     c.status(400);
     return c.json({ message: "Invalid inputs" });

@@ -15,7 +15,9 @@ export const FullBlog = ({ blog }: { blog: Blog }) => {
       <div className="rounded-lg shadow-2xl mt-10 w-full max-w-4xl p-10 bg-white text-black min-h-[25vh]">
         <div className="grid grid-col-2 sm:grid-cols-12 w-full max-w-screen-xl gap-10">
           <div className="col-span-8">
-            <div className="text-5xl font-extrabold">{blog.title}</div>
+            <div className="text-5xl font-extrabold text-wrap break-words overflow-hidden">
+              {blog.title}
+            </div>
             <div className="text-slate-500 pt-4">
               Posted on{" "}
               {new Date(blog.createdAt).toLocaleString("en-GB", {
@@ -24,7 +26,9 @@ export const FullBlog = ({ blog }: { blog: Blog }) => {
                 year: "numeric",
               })}
             </div>
-            <div className="pt-4">{blog.content}</div>
+            <div className="pt-4 text-wrap break-words overflow-hidden">
+              {blog.content}
+            </div>
           </div>
           <div className="col-span-4">
             <div className="text-slate-600">Author</div>

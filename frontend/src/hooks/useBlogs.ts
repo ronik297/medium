@@ -33,7 +33,7 @@ const getAuthHeader = () => {
   if (!token) {
     throw new Error("No authentication token found");
   }
-  return { Authorization: token };
+  return { Authorization: `Bearer ${token}` };
 };
 
 export const useBlog = ({ id }: { id: string }) => {

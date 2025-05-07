@@ -147,11 +147,41 @@ export const useUpdateUser = () => {
         statusCode: error.response?.status,
       };
       setError(apiError);
-      throw apiError;
     } finally {
       setLoading(false);
     }
   };
 
   return { loading, error, updateUser, user, success };
+};
+
+export const useDeleteUser = () => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<ApiError | null>(null);
+  const navigate = useNavigate();
+
+  const deleteUser = async () => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      await axios.delete(`${BACKEND_URL}/api/v1/user/delete`, {
+        headers: getAuthHeader(),
+      });
+      localStorage.removeItem("token");
+      navigate("/signin", { replace: true });
+    } catch (err) {
+      const error = err as AxiosError<{ message?: string }>;
+      const apiError: ApiError = {
+        message:
+          error.response?.data?.message || "Failed to delete user account",
+        statusCode: error.response?.status,
+      };
+      setError(apiError);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { loading, error, deleteUser };
 };

@@ -21,7 +21,7 @@ model Blog {
   title      String
   pusblished Boolean @default(false)
 
-  author   User @relation(fields: [authorId], references: [id])
+  author   User @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId Int
   createdAt DateTime @default(now())
 }

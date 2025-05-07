@@ -109,7 +109,7 @@ export function LabelledInput({
   disabled,
 }: LabelledInputProps) {
   return (
-    <div className="space-y-1 group">
+    <div className="space-y-1 group w-full">
       <label className="block text-sm font-medium text-gray-700 group-focus-within:text-blue-600 transition-colors duration-200">
         {label}
       </label>
