@@ -15,10 +15,10 @@ export const FullBlog = ({ blog }: { blog: Blog }) => {
       <div className="rounded-lg shadow-2xl mt-10 w-full max-w-4xl p-10 bg-white text-black min-h-[25vh]">
         <div className="grid grid-col-2 sm:grid-cols-12 w-full max-w-screen-xl gap-10">
           <div className="col-span-8">
-            <div className="text-5xl font-extrabold text-wrap break-words overflow-hidden">
+            <div className="text-5xl font-extrabold text-wrap break-words">
               {blog.title}
             </div>
-            <div className="text-slate-500 pt-4">
+            <div className="text-slate-500 pt-4 mt-4">
               Posted on{" "}
               {new Date(blog.createdAt).toLocaleString("en-GB", {
                 day: "numeric",
